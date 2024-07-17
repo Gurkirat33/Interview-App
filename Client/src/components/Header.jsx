@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import axios from "axios";
 
 const Header = () => {
   const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const handleLogout = async () => {
@@ -17,22 +18,20 @@ const Header = () => {
       await axios.post("/api/v1/users/logoutUser");
       toast.success("Logout Successful");
       dispatch(clearUser());
+      navigate("/login");
+      setShowModal(false);
     } catch (error) {
       toast.error(error.response?.data?.message);
     }
   };
   const navigation = [
     {
-      title: "Home",
-      path: "/",
-    },
-    {
       title: "About",
       path: "/about",
     },
     {
-      title: "Services",
-      path: "/services",
+      title: "Pricing",
+      path: "/pricing",
     },
     {
       title: "Contact",
@@ -51,11 +50,7 @@ const Header = () => {
       )}
       <div className="flex items-center justify-between py-3 md:block md:py-5">
         <Link to="/">
-          <img
-            src="https://www.floatui.com/logo.svg"
-            className="object-cover"
-            alt="Logo"
-          />
+          <img src="" className="object-cover" alt="Logo" />
         </Link>
         <div className="md:hidden">
           <button
@@ -88,12 +83,20 @@ const Header = () => {
           <span className="hidden h-6 w-px bg-gray-300 md:block"></span>
           <div className="items-center gap-x-6 space-y-3 md:flex md:space-y-0">
             {user ? (
-              <button
-                className="rounded-lg bg-gray-100 px-4 py-2"
-                onClick={() => setShowModal(true)}
-              >
-                Logout
-              </button>
+              <>
+                <Link
+                  to="/dashboard"
+                  className="block rounded-lg bg-indigo-600 px-4 py-2 text-center font-medium text-white shadow hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none md:inline md:text-lg"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  className="rounded-lg bg-gray-100 px-4 py-2"
+                  onClick={() => setShowModal(true)}
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <>
                 <Link

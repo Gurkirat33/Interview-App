@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import heroSectionImg from "../assets/hero-section-image.webp"; //image needs to be changed
 import { FeaturesData } from "../data/FeaturesData";
+import Cta from "../components/Cta";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   return (
@@ -10,7 +12,7 @@ const Home = () => {
         <div className="section-container flex flex-col md:flex-row">
           <div className="flex flex-col justify-center space-y-4 md:space-y-8">
             <p>
-              <span className="bg-primary-600 rounded-full px-2 py-1 text-sm text-white">
+              <span className="rounded-full bg-primary-600 px-2 py-1 text-sm text-white">
                 #1
               </span>
               <span className="ml-2 text-slate-600">Interview app</span>
@@ -28,13 +30,13 @@ const Home = () => {
             <div className="flex justify-center gap-4 md:justify-start">
               <Link className="relative" to="/sign-in">
                 <span className="absolute left-0 top-0 ml-1 mt-1 h-full w-full rounded bg-black"></span>
-                <span className="fold-bold hover:bg-primary-600 relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-200 hover:text-white">
+                <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-200 hover:bg-primary-600 hover:text-white">
                   Get Started
                 </span>
               </Link>
               <a className="relative" href="#">
                 <span className="absolute left-0 top-0 ml-1 mt-1 h-full w-full rounded bg-black"></span>
-                <span className="fold-bold hover:bg-primary-600 relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-200 hover:text-white">
+                <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-200 hover:bg-primary-600 hover:text-white">
                   More Info
                 </span>
               </a>
@@ -53,7 +55,7 @@ const Home = () => {
       <section className="section-container">
         <h2 className="text-center text-3xl font-semibold md:text-4xl">
           Do more with{" "}
-          <span className="decoration-secondary-700 text-secondary-700 underline decoration-wavy decoration-2 underline-offset-auto">
+          <span className="text-secondary-700 underline decoration-secondary-700 decoration-wavy decoration-2 underline-offset-auto">
             less complexity
           </span>
         </h2>
@@ -83,6 +85,8 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <Cta />
+      <Testimonials />
     </div>
   );
 };

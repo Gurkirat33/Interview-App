@@ -3,11 +3,11 @@ import { FooterAddress, FooterData, FooterSocials } from "../data/FooterData";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-pink-200 to-blue-200">
+    <footer className="bg-black text-white">
       <div className="section-container">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
-            <h4 className="mb-6 text-xl font-semibold tracking-wider">
+            <h4 className="mb-6 text-xl font-semibold tracking-wider text-secondary-600">
               About Us
             </h4>
             <p>
@@ -16,7 +16,7 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <h4 className="mb-6 text-xl font-semibold tracking-wider">
+            <h4 className="mb-6 text-xl font-semibold tracking-wider text-secondary-600">
               Services
             </h4>
             <div className="flex flex-col space-y-4">
@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <h4 className="mb-6 text-xl font-semibold tracking-wider">
+            <h4 className="mb-6 text-xl font-semibold tracking-wider text-secondary-600">
               Contact Us
             </h4>
             {FooterAddress.map((item) => (
@@ -36,7 +36,7 @@ const Footer = () => {
             ))}
           </div>
           <div>
-            <h4 className="mb-6 text-xl font-semibold tracking-wider">
+            <h4 className="mb-6 text-xl font-semibold tracking-wider text-secondary-600">
               Follow Us
             </h4>
             <div className="flex flex-wrap gap-4 gap-x-5">

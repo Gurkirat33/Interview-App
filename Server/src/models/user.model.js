@@ -20,6 +20,17 @@ const userSchema = new mongoose.Schema(
     refreshToken: {
       type: String,
     },
+    pricingType: {
+      type: String,
+      enum: ["free", "premium"],
+      default: "free",
+    },
+    interviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Interview",
+      },
+    ],
   },
   { timestamps: true }
 );
