@@ -41,12 +41,10 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    console.log("google sign in clicked");
     // TODO: handle google sign in
   };
 
   const handleGithubSignIn = () => {
-    console.log("github sign in clicked");
     // TODO: handle github sign in
   };
 

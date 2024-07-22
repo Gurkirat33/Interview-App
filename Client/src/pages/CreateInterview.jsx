@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket/socketio";
+import GoogleSearch from "../components/GoogleSearch";
 
 const CreateInterview = () => {
   const [interviewId, setInterviewId] = useState("");
@@ -14,14 +15,12 @@ const CreateInterview = () => {
       .then(() => toast.success("Copied!"))
       .catch((err) => toast.error("Failed to copy!"));
   };
-  console.log(interviewId);
   useEffect(() => {
     async function createInterview() {
       try {
         const res = await axios.post("/api/v1/interviews/create-interview");
         setInterviewId(res.data.data);
       } catch (error) {
-        console.log(error);
         if (error.response?.data?.statusCode === 403) {
           // TODO
         }
@@ -29,8 +28,9 @@ const CreateInterview = () => {
     }
     createInterview();
   }, []);
-  const handleJoinInterviewRoom = ({ id }) => {
-    navigate(`/dashboard/interview/${id}`);
+  const handleJoinInterviewRoom = ({ id, role }) => {
+    navigate(`/dashboard/interview/${id}`, { state: { role } });
+    console.log(role);
   };
   useEffect(() => {
     socket.on("interview:join", handleJoinInterviewRoom);
@@ -73,6 +73,9 @@ const CreateInterview = () => {
       >
         Join the interview
       </button>
+      <div className="border-2 border-black p-4">
+        <GoogleSearch />
+      </div>
     </div>
   );
 };

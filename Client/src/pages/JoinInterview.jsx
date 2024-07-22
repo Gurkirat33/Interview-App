@@ -11,8 +11,9 @@ const JoinInterview = () => {
     // navigate(`/dashboard/interview/${interviewId}`);
   };
 
-  const handleJoinInterviewRoom = ({ id }) => {
-    navigate(`/dashboard/interview/${id}`);
+  const handleJoinInterviewRoom = ({ id, role }) => {
+    navigate(`/dashboard/interview/${id}`, { state: { role } });
+    console.log(role);
   };
   useEffect(() => {
     socket.on("interview:join", handleJoinInterviewRoom);

@@ -19,9 +19,9 @@ const Footer = () => {
             <h4 className="mb-6 text-xl font-semibold tracking-wider text-secondary-600">
               Services
             </h4>
-            <div className="flex flex-col space-y-4">
+            <div className="inline-flex flex-col space-y-4">
               {FooterData.map((item) => (
-                <Link to={item.path} key={item.name}>
+                <Link to={item.path} key={item.name} className="">
                   {item.name}
                 </Link>
               ))}
