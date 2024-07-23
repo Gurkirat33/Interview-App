@@ -16,6 +16,7 @@ import Pricing from "./pages/Pricing";
 import CreateInterview from "./pages/CreateInterview";
 import InterviewRoom from "./socket/InterviewRoom";
 import JoinInterview from "./pages/JoinInterview";
+import Contact from "./pages/Contact";
 
 const AppRouting = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const AppRouting = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route

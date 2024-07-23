@@ -12,7 +12,7 @@ const JoinInterview = () => {
   };
 
   const handleJoinInterviewRoom = ({ id, role }) => {
-    navigate(`/dashboard/interview/${id}`, { state: { role } });
+    navigate(`/dashboard/interview/${id}`, { state: "user" });
     console.log(role);
   };
   useEffect(() => {
@@ -23,7 +23,7 @@ const JoinInterview = () => {
   }, [socket, handleJoinInterviewRoom]);
 
   return (
-    <div className="section-container">
+    <div className="section-container pt-24">
       <h2 className="text-2xl font-bold md:text-4xl md:leading-normal">
         Enter the Interview Details
       </h2>

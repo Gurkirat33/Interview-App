@@ -20,30 +20,34 @@ const BulletPointTextarea = () => {
     setValue(event.target.value);
   };
   return (
-    <>
+    <div className="mt-4">
       <button
         onClick={() => setShowTextarea(!showTextarea)}
-        className="w-fit border-2"
+        className="w-full rounded-lg bg-primary-500 px-4 py-2 text-white"
       >
         {showTextarea ? "Hide Remarks" : "Add Remarks"}
       </button>
       <p className="text-sm text-slate-600">User cannot see the remarks</p>
       {showTextarea && (
         <div className="flex flex-col">
-          <label htmlFor="remarks">Enter Reviews For user:</label>
           <textarea
-            className="w-1/3 border-2 border-black p-2"
+            className="my-2 w-full border border-black p-2"
             id="remarks"
             rows={5}
-            placeholder="Enter remarks"
+            placeholder="Enter Reviews For user"
             value={value}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
-          <button onClick={handleSaveRemarks}>Save Remarks</button>
+          <button
+            onClick={handleSaveRemarks}
+            className="w-full rounded-lg bg-secondary-600 px-4 py-2 text-white"
+          >
+            Save Remarks
+          </button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

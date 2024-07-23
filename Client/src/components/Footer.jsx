@@ -11,8 +11,8 @@ const Footer = () => {
               About Us
             </h4>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              gravida, mi eu pulvinar cursus, sem elit interdum mauris.
+              Passionate about delivering innovative solutions and exceptional
+              service. Dedicated to your success.
             </p>
           </div>
           <div>

@@ -29,7 +29,7 @@ const CreateInterview = () => {
     createInterview();
   }, []);
   const handleJoinInterviewRoom = ({ id, role }) => {
-    navigate(`/dashboard/interview/${id}`, { state: { role } });
+    navigate(`/dashboard/interview/${id}`, { state: "admin" });
     console.log(role);
   };
   useEffect(() => {
@@ -45,7 +45,7 @@ const CreateInterview = () => {
   };
 
   return (
-    <div className="section-container">
+    <div className="section-container pt-24">
       <h2 className="text-2xl font-bold md:text-4xl md:leading-normal">
         Discover Your Interview Details
       </h2>
@@ -73,9 +73,6 @@ const CreateInterview = () => {
       >
         Join the interview
       </button>
-      <div className="border-2 border-black p-4">
-        <GoogleSearch />
-      </div>
     </div>
   );
 };

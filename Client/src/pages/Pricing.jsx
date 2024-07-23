@@ -1,122 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { pricingData } from "../data/PricingData";
 
 const Pricing = () => {
-  const pricingData = [
-    {
-      title: "montly",
-      perMonth: "14",
-      billed: "14",
-      isBest: false,
-      features: [
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-      ],
-    },
-    {
-      title: "quarterly",
-      perMonth: "12",
-      billed: "36",
-      isBest: false,
-      features: [
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-      ],
-    },
-    {
-      title: "yearly",
-      perMonth: "10",
-      billed: "120",
-      isBest: true,
-      features: [
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-        {
-          icon: "",
-          description: "Browse all screens & flows",
-        },
-      ],
-    },
-  ];
   return (
-    <div className="section-container">
+    <div className="section-container pt-24">
       <header>
         <div className="text-center">
-          <h1 className="mb-4 text-4xl font-bold">Choose Your Plan</h1>
-          <p className="mb-8 text-lg">
+          <h1 className="mb-4 text-4xl font-bold">
+            Choose{" "}
+            <span className="text-secondary-700 underline decoration-secondary-700 decoration-wavy decoration-2">
+              Your Plan
+            </span>
+          </h1>
+          <p className="mb-2 text-lg">
             Find the perfect plan for your needs. Simple pricing, no hidden
             fees.
           </p>
-          <a
-            href="#pricing-cards"
-            className="text-primary rounded-full px-6 py-2 font-semibold shadow transition"
-          >
-            Get Started
-          </a>
         </div>
       </header>
 
       <section className="py-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-6 lg:flex-row">
           {pricingData.map((item) => (
             <div
-              className={`rounded-md ${item.title === "yearly" ? "sm:col-span-2 lg:col-span-1" : ""} ${item.isBest ? "bg-black text-white" : "bg-slate-100"} px-6 py-8`}
+              className={`rounded-md ${item.isBest ? "bg-black text-white" : "bg-slate-100"} flex-1 bg-[url('/src/assets/hero-bg.svg')] bg-cover bg-no-repeat px-6 py-8 bg-blend-overlay`}
             >
-              <div
-                className={`${item.title === "yearly" ? "flex flex-col sm:flex-row lg:flex-col" : ""}`}
-              >
+              <div>
                 <div>
-                  <h3 className="text-[2rem] font-bold capitalize">
+                  <h3 className="text-3xl font-bold capitalize md:text-4xl">
                     {item.title}
                   </h3>
                   <p className="mt-4 text-4xl font-bold">
@@ -131,8 +43,8 @@ const Pricing = () => {
                 </div>
                 <div>
                   {item.features.map((feature) => (
-                    <div className="my-4 mt-1 flex items-center gap-4">
-                      <p className="rounded-full bg-slate-200">
+                    <div className="my-4 mt-1 flex items-center gap-4 py-1">
+                      <p className="rounded-full bg-slate-200 text-lg">
                         {feature.icon}
                       </p>
                       <p

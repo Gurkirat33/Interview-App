@@ -114,7 +114,7 @@ const InterviewRoom = () => {
 
   // Update the role on mount
   useEffect(() => {
-    setRole(location.state.role);
+    setRole(location.state);
     goFullscreen(); // Request full-screen on join
     notifyFullscreenStatus(); // Notify initial full-screen status
 
@@ -148,9 +148,14 @@ const InterviewRoom = () => {
     };
 
     window.addEventListener("focus", handleFocus);
+    // window.addEventListener("blur", handleBlur);
+
+    // Initial check
+    checkFocus();
 
     return () => {
       window.removeEventListener("focus", handleFocus);
+      // window.removeEventListener("blur", handleBlur);
     };
   }, [checkFocus]);
 
@@ -226,100 +231,84 @@ const InterviewRoom = () => {
     handleInterviewError,
   ]);
 
+  console.log(role);
   return (
-    <div className="section-container flex min-h-screen flex-col bg-gray-100 p-6">
-      <div>
-        <div className="mb-4 flex space-x-4">
-          {myStream && (
-            <button
-              onClick={sendStreams}
-              className="rounded bg-blue-500 px-4 py-2 text-white shadow-lg transition duration-300 hover:bg-blue-600"
-            >
-              Send Stream
-            </button>
-          )}
-          {remoteSocketId && (
-            <button
-              onClick={handleCallUser}
-              className="rounded bg-green-500 px-4 py-2 text-white shadow-lg transition duration-300 hover:bg-green-600"
-            >
-              Call
-            </button>
-          )}
-        </div>
-        <div className="flex flex-col lg:flex-row">
-          <div className="border-4 border-red-400">
-            {role && (
-              <div className="text-xl font-bold text-gray-700">
-                Your Role:{" "}
-                <span
-                  className={`font-semibold ${
-                    role === "admin" ? "text-red-500" : "text-blue-500"
-                  }`}
-                >
-                  {role}
-                </span>
-              </div>
+    <div className="flex min-h-screen flex-col bg-gray-100">
+      <div className="section-container p-6 pt-24">
+        <div>
+          <div className="mb-4 flex space-x-4">
+            {myStream && (
+              <button
+                onClick={sendStreams}
+                className="rounded bg-blue-500 px-4 py-2 text-white shadow-lg transition duration-300 hover:bg-blue-600"
+              >
+                Send Stream
+              </button>
             )}
-            <div className="flex gap-4 lg:flex-col">
-              {myStream && (
-                <div className="flex h-40 w-40 flex-col items-center border-2 border-black sm:h-60 sm:w-60">
-                  <h2 className="mb-2 text-xl font-semibold">My Stream</h2>
-                  <ReactPlayer
-                    playing
-                    muted
-                    height="100%"
-                    width="100%"
-                    url={myStream}
-                    className="rounded-lg shadow-lg"
-                  />
-                </div>
-              )}
-              {remoteStream && (
-                <div className="flex h-40 w-40 flex-col items-center border-2 border-black sm:h-60 sm:w-60">
-                  <h2 className="mb-2 text-xl font-semibold">Remote Stream</h2>
-                  <ReactPlayer
-                    playing
-                    muted
-                    height="100%"
-                    width="100%"
-                    url={remoteStream}
-                    className="rounded-lg shadow-lg"
-                  />
-                </div>
-              )}
-            </div>
+            {remoteSocketId && (
+              <>
+                <button
+                  onClick={handleCallUser}
+                  className="rounded bg-green-500 px-4 py-2 text-white shadow-lg transition duration-300 hover:bg-green-600"
+                >
+                  Call
+                </button>
+              </>
+            )}
+            {remoteStream && role === "admin" && (
+              <p
+                className={`${isFullscreen ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"} flex items-center px-4`}
+              >
+                User is {isFullscreen ? "" : "not"} in full screen
+              </p>
+            )}
           </div>
-          <div>{myStream && <CodeEditor />}</div>
+          <div className="flex flex-col gap-8 md:flex-row">
+            <div className="mx-auto md:mx-0">
+              <div className="flex gap-4 md:flex-col">
+                {myStream && (
+                  <div className="flex w-full flex-col items-center sm:h-60 sm:w-60">
+                    <ReactPlayer
+                      playing
+                      muted
+                      height="100%"
+                      width="100%"
+                      url={myStream}
+                      className="rounded-lg shadow-lg"
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                )}
+                {remoteStream && (
+                  <div className="flex w-full flex-col items-center sm:h-60 sm:w-60">
+                    <ReactPlayer
+                      playing
+                      muted
+                      height="100%"
+                      width="100%"
+                      url={remoteStream}
+                      style={{ width: "100%" }}
+                      className="rounded-lg shadow-lg"
+                    />
+                  </div>
+                )}
+              </div>
+              {role === "admin" && <BulletPointTextarea />}
+              {/* {role === "admin" && <BulletPointTextarea />} */}
+            </div>
+            <div className="mt-2">{myStream && <CodeEditor role={role} />}</div>
+          </div>
         </div>
+
+        {role === "user" && (
+          <button
+            className="border-lg w-fit rounded-lg bg-black p-2 text-white"
+            onClick={goFullscreen}
+          >
+            Full screen
+          </button>
+        )}
       </div>
-
-      {role === "user" && (
-        <button
-          className="border-lg w-fit bg-black p-3 text-white"
-          onClick={goFullscreen}
-        >
-          Full screen{" "}
-        </button>
-      )}
-
-      {/* Admin Question Component */}
-      {role === "admin" && (
-        <>
-          <AdminQuestion />
-          <p
-            className={`${isFullscreen ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}`}
-          >
-            User is {isFullscreen ? "" : "not"} in full screen
-          </p>
-          <p
-            className={`${isFocus ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}`}
-          >
-            User is {isFocus ? "" : "not"} in focus
-          </p>
-        </>
-      )}
-      {role === "admin" && <BulletPointTextarea />}
     </div>
   );
 };
