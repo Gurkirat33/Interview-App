@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket/socketio";
+import { useSelector } from "react-redux";
 
 const JoinInterview = () => {
   const [interviewId, setInterviewId] = useState("");
+  const userId = useSelector((state) => state.user.user._id);
   const navigate = useNavigate();
 
   const handleJoinInterview = () => {
-    socket.emit("interview:join", { interviewId });
-    // navigate(`/dashboard/interview/${interviewId}`);
+    socket.emit("interview:join", { interviewId, role: "user", userId });
   };
 
   const handleJoinInterviewRoom = ({ id, role }) => {

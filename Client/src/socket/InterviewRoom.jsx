@@ -114,9 +114,13 @@ const InterviewRoom = () => {
 
   // Update the role on mount
   useEffect(() => {
-    setRole(location.state);
-    goFullscreen(); // Request full-screen on join
-    notifyFullscreenStatus(); // Notify initial full-screen status
+    const roleFromState = location.state;
+    setRole(roleFromState);
+
+    // Go fullscreen only if the role is "user"
+    if (roleFromState === "user") {
+      goFullscreen(); // Request full-screen on join
+    }
 
     // Listen for changes in full-screen mode
     document.addEventListener("fullscreenchange", notifyFullscreenStatus);
@@ -234,7 +238,14 @@ const InterviewRoom = () => {
   console.log(role);
   return (
     <div className="flex min-h-screen flex-col bg-gray-100">
-      <div className="section-container p-6 pt-24">
+      {!remoteSocketId && (
+        <>
+          <p className="mt-8 text-center text-2xl font-bold md:text-3xl">
+            Waiting for other users
+          </p>
+        </>
+      )}
+      <div className="section-container max-w-[86rem] p-6 pt-4">
         <div>
           <div className="mb-4 flex space-x-4">
             {myStream && (
@@ -292,9 +303,8 @@ const InterviewRoom = () => {
                     />
                   </div>
                 )}
+                {role === "admin" && remoteStream && <BulletPointTextarea />}
               </div>
-              {role === "admin" && <BulletPointTextarea />}
-              {/* {role === "admin" && <BulletPointTextarea />} */}
             </div>
             <div className="mt-2">{myStream && <CodeEditor role={role} />}</div>
           </div>

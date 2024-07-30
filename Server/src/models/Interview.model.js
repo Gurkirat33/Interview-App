@@ -1,7 +1,14 @@
 import mongoose from "mongoose";
 
 const interviewSchema = new mongoose.Schema({
-  _id: { type: String, required: true },
+  interviewCreator: {
+    type: String,
+    required: true,
+  },
+  interviewId: {
+    type: String,
+    required: true,
+  },
   participants: [String],
 });
 

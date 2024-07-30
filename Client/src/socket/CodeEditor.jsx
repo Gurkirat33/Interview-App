@@ -19,6 +19,7 @@ import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 
 const CodeEditor = ({ role }) => {
+  const [showAdminSettings, setShowAdminSettings] = useState(false);
   const [editorSettings, setEditorSettings] = useState({
     fontSize: 14,
     lineHeight: 19,
@@ -44,16 +45,15 @@ const CodeEditor = ({ role }) => {
   ];
   const renderAdminControls = () => {
     return (
-      <div>
-        <h3>Admin Only Settings</h3>
-        <div className="flex flex-wrap">
+      <div className="">
+        <div className="flex flex-wrap gap-4">
           {numericChanges.map((key) => (
-            <div key={key}>
-              <label>{key}</label>
+            <div key={key} className="">
+              <label className="text-lg font-medium capitalize">{key}</label>
               <input
                 type="number"
                 value={editorSettings[key]}
-                className="border p-1"
+                className="ml-1 w-12 border p-1 focus:outline-none"
                 onChange={(e) =>
                   setEditorSettings({
                     ...editorSettings,
@@ -66,12 +66,12 @@ const CodeEditor = ({ role }) => {
         </div>
         <div className="flex flex-wrap">
           {checkBoxChanges.map((key) => (
-            <div key={key}>
-              <label>{key}</label>
+            <div key={key} className="mr-4">
+              <label className="text-lg font-medium capitalize">{key}</label>
               <input
                 type="checkbox"
                 checked={editorSettings[key]}
-                className="w-fit border p-1"
+                className="ml-1 w-fit border p-1"
                 onChange={(e) =>
                   setEditorSettings({
                     ...editorSettings,
@@ -137,9 +137,15 @@ const CodeEditor = ({ role }) => {
           </select>
         </div>
       )}
-      {role === "admin" && renderAdminControls()}
+      {role === "admin" && (
+        <button
+          className="mb-4 rounded-md border-2 border-black p-1 font-semibold"
+          onClick={() => setShowAdminSettings(!showAdminSettings)}
+        >{`${showAdminSettings ? "Hide" : "Show"} Admin Settings`}</button>
+      )}
+      {role === "admin" && showAdminSettings && renderAdminControls()}
       <div className="border border-transparent md:w-[30rem] lg:w-[45rem] xl:w-[55rem]"></div>
-      <div className="mx-auto w-full">
+      <div className="xl:flexs mx-auto w-full">
         <AceEditor
           placeholder="Enter code here"
           mode={languageSelected}
@@ -161,7 +167,6 @@ const CodeEditor = ({ role }) => {
           }}
           style={{ width: "100%" }}
         />
-        {/* {role === "admin" && <div></div>} */}
         {<OutputCode language={languageSelected} code={code} />}
       </div>
     </div>

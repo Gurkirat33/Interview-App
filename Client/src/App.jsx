@@ -17,20 +17,28 @@ import CreateInterview from "./pages/CreateInterview";
 import InterviewRoom from "./socket/InterviewRoom";
 import JoinInterview from "./pages/JoinInterview";
 import Contact from "./pages/Contact";
+import PublicRoutes from "./components/PublicRoutes";
 
 const AppRouting = () => {
   const location = useLocation();
-  const noHeaderFooterRoutes = ["/sign-in", "/login"];
+  const noHeaderFooterRoutes = ["/sign-in", "/login", "/dashboard/interview"];
+  const isDynamicRoute = (pathname) => {
+    return /^\/dashboard\/interview\/[^\/]+/.test(pathname);
+  };
+
   return (
     <>
       <Toaster />
-      {!noHeaderFooterRoutes.includes(location.pathname) && <Header />}
+      {!noHeaderFooterRoutes.includes(location.pathname) &&
+        !isDynamicRoute(location.pathname) && <Header />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route element={<PublicRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route
@@ -44,7 +52,8 @@ const AppRouting = () => {
           <Route path="/dashboard/join/interview" element={<JoinInterview />} />
         </Route>
       </Routes>
-      {!noHeaderFooterRoutes.includes(location.pathname) && <Footer />}
+      {!isDynamicRoute(location.pathname) &&
+        !noHeaderFooterRoutes.includes(location.pathname) && <Footer />}
     </>
   );
 };

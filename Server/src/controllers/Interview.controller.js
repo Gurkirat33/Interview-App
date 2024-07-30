@@ -24,15 +24,13 @@ export const createInterview = asyncHandler(async (req, res) => {
   // Generate a new UUID for the interview ID
   const interviewId = uuidv6();
 
-  // Create a new interview document and save it to the database
-  const newInterview = new Interview({
-    _id: interviewId, // Use the generated UUID as the _id
-    participants: [], // Initialize participants array, can be empty at creation
-  });
+  // const newInterview = new Interview({
+  //   _id: interviewId,
+  //   participants: [],
+  // });
 
-  await newInterview.save(); // Save the new interview to the database
+  // await newInterview.save();
 
-  // Send response with the created interview ID
   res
     .status(200)
     .json(sendResponse(200, "Interview created successfully", interviewId));

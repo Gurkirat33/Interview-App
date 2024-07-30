@@ -24,6 +24,7 @@ const Pricing = () => {
         <div className="flex flex-col gap-6 lg:flex-row">
           {pricingData.map((item) => (
             <div
+              key={item.title}
               className={`rounded-md ${item.isBest ? "bg-black text-white" : "bg-slate-100"} flex-1 bg-[url('/src/assets/hero-bg.svg')] bg-cover bg-no-repeat px-6 py-8 bg-blend-overlay`}
             >
               <div>
@@ -42,8 +43,11 @@ const Pricing = () => {
                   </p>
                 </div>
                 <div>
-                  {item.features.map((feature) => (
-                    <div className="my-4 mt-1 flex items-center gap-4 py-1">
+                  {item.features.map((feature, index) => (
+                    <div
+                      className="my-4 mt-1 flex items-center gap-4 py-1"
+                      key={index}
+                    >
                       <p className="rounded-full bg-slate-200 text-lg">
                         {feature.icon}
                       </p>

@@ -20,11 +20,20 @@ export const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
-  socket.on("interview:join", async ({ interviewId }) => {
-    console.log(`User joined interview: ${interviewId}`);
+  socket.on("interview:join", async ({ interviewId, role, userId }) => {
+    console.log(
+      `User joined interview: ${interviewId} , role: ${role}, userId: ${userId}`
+    );
     // Save data to backend -TODO
-    const interview = await Interview.findOne({ _id: interviewId });
-    console.log(interview);
+    if (role === "admin") {
+      const interview = await Interview.create({
+        interviewId,
+        interviewCreator: userId,
+      });
+      interview?.participants?.push(userId);
+      await interview.save();
+      console.log(interview);
+    }
     if (!interviewId) {
       socket.emit("interview:error", {
         message: "Invalid interview ID. You are not authorized to join.",
@@ -33,23 +42,16 @@ io.on("connection", (socket) => {
       return;
     }
 
-    interview?.participants?.push(socket.id);
-    await interview.save();
-    let role = "user";
-    if (interview?.participants?.length === 1) {
-      role = "admin";
-    }
+    // interview?.participants?.push(socket.id);
+    // await interview.save();
 
     io.to(interviewId).emit("user:joined", { id: socket.id });
     socket.join(interviewId);
-    io.to(socket.id).emit("interview:join", { id: interviewId, role });
+    io.to(socket.id).emit("interview:join", { id: interviewId });
   });
 
   socket.on("fullscreen:status", ({ interviewID, isFullscreen, isFocus }) => {
-    console.log(
-      `Fullscreen status for interview ${interviewID}: ${isFullscreen} - ${isFocus}`
-    );
-    console.log(interviewID, isFullscreen, isFocus);
+    // console.log(interviewID, isFullscreen, isFocus);
     // Broadcast the fullscreen status to other users in the same interview room
     socket.to(interviewID).emit("fullscreen:status", {
       userId: socket.id,

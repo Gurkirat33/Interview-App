@@ -5,9 +5,11 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket/socketio";
 import GoogleSearch from "../components/GoogleSearch";
+import { useSelector } from "react-redux";
 
 const CreateInterview = () => {
   const [interviewId, setInterviewId] = useState("");
+  const userId = useSelector((state) => state.user.user._id);
   const navigate = useNavigate();
   const handleCopyInterviewId = () => {
     navigator.clipboard
@@ -28,9 +30,8 @@ const CreateInterview = () => {
     }
     createInterview();
   }, []);
-  const handleJoinInterviewRoom = ({ id, role }) => {
+  const handleJoinInterviewRoom = ({ id }) => {
     navigate(`/dashboard/interview/${id}`, { state: "admin" });
-    console.log(role);
   };
   useEffect(() => {
     socket.on("interview:join", handleJoinInterviewRoom);
@@ -40,8 +41,11 @@ const CreateInterview = () => {
   }, [socket, handleJoinInterviewRoom]);
 
   const handleJoinInterview = () => {
-    socket.emit("interview:join", { interviewId });
-    // navigate(`/dashboard/interview/${interviewId}`);
+    socket.emit("interview:join", {
+      interviewId,
+      role: "admin",
+      userId,
+    });
   };
 
   return (

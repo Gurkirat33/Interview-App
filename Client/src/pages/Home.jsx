@@ -3,6 +3,7 @@ import heroSectionImg from "../assets/hero-section-image.webp"; //image needs to
 import { FeaturesData } from "../data/FeaturesData.jsx";
 import Cta from "../components/Cta";
 import Testimonials from "../components/Testimonials";
+import Faq from "../components/Faq.jsx";
 
 const Home = () => {
   return (
@@ -80,6 +81,7 @@ const Home = () => {
       </section>
       <Cta />
       <Testimonials />
+      <Faq />
     </div>
   );
 };

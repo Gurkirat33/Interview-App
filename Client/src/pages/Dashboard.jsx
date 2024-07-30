@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CodeEditor from "../socket/CodeEditor";
+import InterviewBlueprints from "../components/InterviewBlueprints";
 
 const Dashboard = () => {
   return (
@@ -40,17 +41,8 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </section>
-        <section className="mb-4">
-          <div className="rounded-lg bg-white p-6 shadow-md">
-            <div>
-              <h3>Created Interviews</h3>
-            </div>
-          </div>
-        </section>
-        <section className="mb-4">
-          <div className="rounded-lg bg-white p-6 shadow-md">
-            <h3>Joined Interviews</h3>
+          <div className="mt-6 rounded-lg bg-white p-6 shadow-md">
+            <InterviewBlueprints />
           </div>
         </section>
       </main>

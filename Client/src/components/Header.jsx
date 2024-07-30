@@ -49,7 +49,7 @@ const Header = () => {
           <Link to="/">
             <h2 className="text-2xl font-bold">InterviewIT</h2>
           </Link>
-          <div className="md:hidden">
+          <div className="flex md:hidden">
             <button
               className="text-gray-500 hover:text-gray-800"
               onClick={() => setState(!state)}
@@ -71,7 +71,7 @@ const Header = () => {
                 <Link
                   to={item.path}
                   onClick={() => setState(!state)}
-                  className="flex flex-col text-lg font-semibold"
+                  className="flex flex-col text-lg font-semibold duration-300 hover:text-primary-600"
                   key={index}
                 >
                   {item.title}
@@ -84,7 +84,7 @@ const Header = () => {
                 <>
                   <Link
                     to="/dashboard"
-                    className="block rounded-lg bg-indigo-600 px-4 py-2 text-center font-semibold text-white shadow hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none md:inline md:text-lg"
+                    className="block rounded-lg bg-primary-600 px-4 py-2 text-center font-semibold text-white shadow duration-300 hover:bg-primary-700 active:shadow-none md:inline md:text-lg"
                     onClick={() => setState(!state)}
                   >
                     Dashboard
@@ -103,13 +103,13 @@ const Header = () => {
                 <>
                   <Link
                     to="/login"
-                    className="block rounded-lg border py-2 text-center font-semibold text-gray-700 hover:text-indigo-600 md:border-none md:text-lg"
+                    className="block rounded-lg border py-2 text-center font-semibold text-gray-700 duration-300 hover:text-primary-600 md:border-none md:text-lg"
                   >
                     Log in
                   </Link>
                   <Link
                     to="/signin"
-                    className="block rounded-lg bg-indigo-600 px-4 py-2 text-center font-semibold text-white shadow hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none md:inline md:text-lg"
+                    className="block rounded-lg bg-primary-600 px-4 py-2 text-center font-semibold text-white shadow duration-300 hover:bg-primary-700 active:shadow-none md:inline md:text-lg"
                   >
                     Sign in
                   </Link>
