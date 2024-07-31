@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 import http from "http";
-import Interview from "./models/Interview.model.js";
+import { Interview } from "./models/Interview.model.js";
 
 const app = express();
 
@@ -18,27 +18,39 @@ export const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
-
   socket.on("interview:join", async ({ interviewId, role, userId }) => {
-    console.log(
-      `User joined interview: ${interviewId} , role: ${role}, userId: ${userId}`
-    );
     // Save data to backend -TODO
     if (role === "admin") {
-      const interview = await Interview.create({
-        interviewId,
-        interviewCreator: userId,
-      });
-      interview?.participants?.push(userId);
-      await interview.save();
-      console.log(interview);
+      const interviewCheck = await Interview.findOne({ interviewId });
+      if (interviewCheck) {
+        interviewCheck.participants.push(userId);
+        interviewCheck.interviewCreator = userId;
+        await interviewCheck.save();
+      } else {
+        const interview = await Interview.create({
+          interviewId,
+          interviewCreator: userId,
+        });
+        interview?.participants?.push(userId);
+        await interview.save();
+      }
+    } else {
+      const interview = await Interview.findOne({ interviewId });
+      if (!interview) {
+        await Interview.create({
+          interviewId,
+          participants: [userId],
+        });
+      } else {
+        interview?.participants?.push(userId);
+        await interview.save();
+      }
     }
+
     if (!interviewId) {
       socket.emit("interview:error", {
         message: "Invalid interview ID. You are not authorized to join.",
       });
-      console.log("Error in unexpected");
       return;
     }
 
@@ -51,8 +63,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("fullscreen:status", ({ interviewID, isFullscreen, isFocus }) => {
-    // console.log(interviewID, isFullscreen, isFocus);
-    // Broadcast the fullscreen status to other users in the same interview room
     socket.to(interviewID).emit("fullscreen:status", {
       userId: socket.id,
       isFullscreen,
@@ -61,10 +71,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("code:output", ({ interviewId, output }) => {
-    console.log("Emitting code:output:change");
     io.to(interviewId).emit("code:output:change", { output });
-    console.log(output);
-    console.log(interviewId);
   });
 
   socket.on("user:call", ({ to, offer }) => {
@@ -76,12 +83,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("peer:nego:needed", ({ to, offer }) => {
-    // console.log("peer:nego:needed", offer);
     io.to(to).emit("peer:nego:needed", { from: socket.id, offer });
   });
 
   socket.on("peer:nego:done", ({ to, ans }) => {
-    // console.log("peer:nego:done", ans);
     io.to(to).emit("peer:nego:final", { from: socket.id, ans });
   });
 

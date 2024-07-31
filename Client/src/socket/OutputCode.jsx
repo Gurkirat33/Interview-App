@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { executeCode } from "../api";
 import socket from "./socketio";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const OutputCode = ({ language, code }) => {
   const [output, setOutput] = useState(null);
@@ -22,13 +23,12 @@ const OutputCode = ({ language, code }) => {
         output: outputCode,
       });
     } catch (error) {
-      console.log("error");
+      toast.error(error.response?.data?.message);
       setIsError(true);
     } finally {
       setLoding(false);
     }
   };
-  console.log(isError);
   const handleCodeOutputSync = ({ output }) => {
     setOutput(output);
   };

@@ -26,7 +26,7 @@ const PublicRoutes = () => {
   if (user && notAllowedPaths.includes(location.pathname)) {
     return <Navigate to="/dashboard" />;
   }
-  return user ? <Outlet /> : <Outlet />;
+  return <Outlet />;
 };
 
 export default PublicRoutes;

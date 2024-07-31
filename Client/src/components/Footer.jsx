@@ -3,7 +3,7 @@ import { FooterAddress, FooterData, FooterSocials } from "../data/FooterData";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black py-4 text-white">
       <div className="section-container">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
@@ -48,11 +48,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-6 border-2 p-5">
+        <div className="mt-8 border-t-2 border-slate-400 p-4">
           <p className="text-center">
             Copyright © 2024
-            <span className="font-bold"> Company Name</span>. All Rights
-            Reserved.
+            <span className="font-bold"> InteviewIT</span>. All Rights Reserved.
           </p>
         </div>
       </div>

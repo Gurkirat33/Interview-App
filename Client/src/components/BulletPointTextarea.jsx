@@ -1,12 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
-const BulletPointTextarea = () => {
+const BulletPointTextarea = ({ roomId }) => {
   const [showTextarea, setShowTextarea] = useState(false);
   const [value, setValue] = useState("• ");
 
-  const handleSaveRemarks = () => {
-    // axios.post("")
+  const handleSaveRemarks = async () => {
+    try {
+      await axios.post("/api/v1/interviews/add-remarks", {
+        remarks: value,
+        roomId,
+      });
+      toast.success("Remarks added successfully");
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
   };
 
   const handleKeyDown = (event) => {

@@ -14,12 +14,8 @@ const GoogleSearch = () => {
           .querySelector("#gcse-search")
           .addEventListener("click", (event) => {
             if (event.target.tagName === "A") {
-              console.log(event.target.tagName);
               event.preventDefault();
-              // Open the link in the modal or within the application
               const url = event.target.href;
-              // Add your custom logic here to open the URL in a modal
-              console.log(`Intercepted link click: ${url}`);
             }
           });
       }

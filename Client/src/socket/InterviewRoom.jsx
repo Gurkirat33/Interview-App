@@ -190,7 +190,6 @@ const InterviewRoom = () => {
   }, []);
 
   const handleFullScreenStatusChange = ({ isFullscreen }) => {
-    console.log("Reaching in the frontend ans the result is:", isFullscreen);
     setIsFullscreen(isFullscreen);
   };
 
@@ -235,7 +234,6 @@ const InterviewRoom = () => {
     handleInterviewError,
   ]);
 
-  console.log(role);
   return (
     <div className="flex min-h-screen flex-col bg-gray-100">
       {!remoteSocketId && (
@@ -303,7 +301,9 @@ const InterviewRoom = () => {
                     />
                   </div>
                 )}
-                {role === "admin" && remoteStream && <BulletPointTextarea />}
+                {role === "admin" && remoteStream && (
+                  <BulletPointTextarea roomId={roomId} />
+                )}
               </div>
             </div>
             <div className="mt-2">{myStream && <CodeEditor role={role} />}</div>

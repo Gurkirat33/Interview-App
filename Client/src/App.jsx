@@ -18,6 +18,7 @@ import InterviewRoom from "./socket/InterviewRoom";
 import JoinInterview from "./pages/JoinInterview";
 import Contact from "./pages/Contact";
 import PublicRoutes from "./components/PublicRoutes";
+import NotFound from "./pages/NotFound";
 
 const AppRouting = () => {
   const location = useLocation();
@@ -51,6 +52,7 @@ const AppRouting = () => {
           />
           <Route path="/dashboard/join/interview" element={<JoinInterview />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {!isDynamicRoute(location.pathname) &&
         !noHeaderFooterRoutes.includes(location.pathname) && <Footer />}

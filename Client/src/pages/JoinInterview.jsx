@@ -14,7 +14,6 @@ const JoinInterview = () => {
 
   const handleJoinInterviewRoom = ({ id, role }) => {
     navigate(`/dashboard/interview/${id}`, { state: "user" });
-    console.log(role);
   };
   useEffect(() => {
     socket.on("interview:join", handleJoinInterviewRoom);
@@ -24,19 +23,23 @@ const JoinInterview = () => {
   }, [socket, handleJoinInterviewRoom]);
 
   return (
-    <div className="section-container pt-24">
+    <div className="section-container pt-20 md:pb-12 md:pt-28">
       <h2 className="text-2xl font-bold md:text-4xl md:leading-normal">
         Enter the Interview Details
       </h2>
-      {/* <h4>Interview Details</h4> */}
       <div className="mt-6 flex gap-4">
         <p className="rounded-lg bg-slate-200 p-3">
-          <span className="text-lg font-medium">Interview ID</span> :{" "}
+          <label className="text-lg font-medium" htmlFor="interviewId">
+            Interview ID
+          </label>{" "}
+          :{" "}
           <input
             type="text"
-            className="p-3"
+            id="interviewId"
+            className="rounded-lg bg-slate-200 p-1 text-slate-600 focus:outline-none"
             value={interviewId}
             onChange={(e) => setInterviewId(e.target.value)}
+            placeholder="Enter the interview ID"
           />
         </p>
       </div>

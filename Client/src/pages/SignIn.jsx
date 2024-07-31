@@ -41,7 +41,6 @@ const SignIn = () => {
       toast.success("Sigin Successful");
       navigate("/dashboard");
     } catch (error) {
-      console.log("error", error.response?.data?.message);
       if (error.response?.data?.statusCode === 403) {
         toast(`${error.response?.data?.message},Try login`);
         navigate("/login");
@@ -61,7 +60,7 @@ const SignIn = () => {
 
   return (
     <main className="flex">
-      <div className="bg-primary-800 relative hidden min-h-screen flex-1 items-center justify-center lg:flex">
+      <div className="relative hidden min-h-screen flex-1 items-center justify-center bg-primary-800 lg:flex">
         <div className="relative z-10 max-w-md">
           <img src="" alt="logo" width={150} />
           <div className="space-y-3">
@@ -134,7 +133,7 @@ const SignIn = () => {
               </label>
               <input
                 id="name"
-                className="focus:border-primary-600 mt-2 w-full rounded-lg border bg-transparent px-3 py-2 shadow-sm outline-none"
+                className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary-600"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
@@ -147,7 +146,7 @@ const SignIn = () => {
               </label>
               <input
                 id="email"
-                className="focus:border-primary-600 mt-2 w-full rounded-lg border bg-transparent px-3 py-2 shadow-sm outline-none"
+                className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary-600"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -162,7 +161,7 @@ const SignIn = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  className="focus:border-primary-600 mt-2 w-full rounded-lg border bg-transparent px-3 py-2 shadow-sm outline-none"
+                  className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 shadow-sm outline-none focus:border-primary-600"
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
@@ -184,13 +183,13 @@ const SignIn = () => {
             <p className="">
               Already have an account?{" "}
               <Link
-                className="text-primary-600 font-medium hover:underline"
+                className="font-medium text-primary-600 hover:underline"
                 to="/login"
               >
                 Log in
               </Link>
             </p>
-            <button className="bg-primary-600 hover:bg-primary-700 w-full rounded-lg px-4 py-2 font-medium text-white duration-150">
+            <button className="w-full rounded-lg bg-primary-600 px-4 py-2 font-medium text-white duration-150 hover:bg-primary-700">
               Create account
             </button>
           </form>

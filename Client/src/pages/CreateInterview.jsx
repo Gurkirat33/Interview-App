@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket/socketio";
-import GoogleSearch from "../components/GoogleSearch";
 import { useSelector } from "react-redux";
+import UpgradeModal from "../components/UpgradeModal";
 
 const CreateInterview = () => {
   const [interviewId, setInterviewId] = useState("");
   const userId = useSelector((state) => state.user.user._id);
+  const [maxInterviewModal, setMaxInterviewModal] = useState(false);
   const navigate = useNavigate();
   const handleCopyInterviewId = () => {
     navigator.clipboard
@@ -24,7 +25,7 @@ const CreateInterview = () => {
         setInterviewId(res.data.data);
       } catch (error) {
         if (error.response?.data?.statusCode === 403) {
-          // TODO
+          setMaxInterviewModal(true);
         }
       }
     }
@@ -49,12 +50,12 @@ const CreateInterview = () => {
   };
 
   return (
-    <div className="section-container pt-24">
+    <div className="section-container pt-20 md:pb-12 md:pt-28">
+      {maxInterviewModal && <UpgradeModal />}
       <h2 className="text-2xl font-bold md:text-4xl md:leading-normal">
         Discover Your Interview Details
       </h2>
-      {/* <h4>Interview Details</h4> */}
-      <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex flex-col gap-4 sm:flex-row">
         <p className="rounded-lg bg-slate-200 p-3">
           <span className="text-lg font-medium">Interview ID</span> :{" "}
           <span className="text-slate-600">{interviewId}</span>

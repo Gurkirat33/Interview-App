@@ -32,7 +32,6 @@ const CodeEditor = ({ role }) => {
     enableLiveAutocompletion: false,
     enableSnippets: false,
   });
-  console.log(editorSettings);
   const numericChanges = ["fontSize", "lineHeight", "tabSize"];
   const checkBoxChanges = [
     "showPrintMargin",
