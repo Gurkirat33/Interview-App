@@ -19,7 +19,7 @@ const Home = () => {
                 Interview app
               </span>
             </p>
-            <h1 className="text-center text-3xl font-bold tracking-wide sm:text-4xl md:text-5xl md:leading-tight">
+            <h1 className="text-center text-4xl font-bold tracking-wide md:text-5xl lg:text-6xl lg:leading-tight">
               Conduct <span className="text-primary-600">Seamless</span> Live{" "}
               Coding Interviews{" "}
               <span className="text-primary-600">Effortlessly</span>
