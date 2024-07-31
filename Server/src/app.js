@@ -106,6 +106,11 @@ app.use(cookieParser());
 
 // routes
 
+// Demo route
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 // User routes
 import userRoutes from "./routes/user.route.js";
 app.use("/api/v1/users", userRoutes);
