@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store.js";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
-if (process.env.NODE_ENV === "production") disableReactDevTools();
+// if (process.env.NODE_ENV === "production") disableReactDevTools();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
