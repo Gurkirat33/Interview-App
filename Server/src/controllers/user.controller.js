@@ -34,7 +34,10 @@ export const signInUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
+    domain: "interview-app-client.vercel.app",
+    path: "/",
   };
 
   return res
@@ -72,7 +75,10 @@ export const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
+    domain: "interview-app-client.vercel.app",
+    path: "/",
   };
 
   return res
@@ -92,12 +98,13 @@ export const logoutUser = asyncHandler(async (req, res) => {
   user.refreshToken = null;
 
   await user.save({ validateBeforeSave: false });
-
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
+    domain: "interview-app-client.vercel.app",
+    path: "/",
   };
-
   return res
     .status(200)
     .clearCookie("accessToken", options)

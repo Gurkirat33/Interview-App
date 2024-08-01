@@ -12,7 +12,7 @@ const server = http.createServer(app);
 // Socket.io and WebRtc
 export const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://interview-app-client.vercel.app",
     methods: ["GET", "POST"],
   },
 });
@@ -99,7 +99,7 @@ io.on("connection", (socket) => {
 });
 
 // middleware
-app.use(cors({ origin: process.env.CORS_ORIGIN }));
+app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
