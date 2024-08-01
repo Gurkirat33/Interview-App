@@ -14,6 +14,7 @@ export const io = new Server(server, {
   cors: {
     origin: "https://interview-app-client.vercel.app",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 

@@ -34,9 +34,8 @@ export const signInUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "None",
-    domain: "interview-app-client.vercel.app",
     path: "/",
   };
 
@@ -75,9 +74,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "None",
-    domain: "interview-app-client.vercel.app",
     path: "/",
   };
 
@@ -100,9 +98,8 @@ export const logoutUser = asyncHandler(async (req, res) => {
   await user.save({ validateBeforeSave: false });
   const options = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "None",
-    domain: "interview-app-client.vercel.app",
     path: "/",
   };
   return res
