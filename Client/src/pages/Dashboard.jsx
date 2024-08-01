@@ -4,6 +4,7 @@ import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+axios.defaults.withCredentials = true;
 
 const Dashboard = () => {
   const [showInterviewHistory, setShowInterviewHistory] = useState(false);

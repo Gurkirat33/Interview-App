@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import socket from "../socket/socketio";
 import { useSelector } from "react-redux";
 import UpgradeModal from "../components/UpgradeModal";
+axios.defaults.withCredentials = true;
 
 const CreateInterview = () => {
   const [interviewId, setInterviewId] = useState("");

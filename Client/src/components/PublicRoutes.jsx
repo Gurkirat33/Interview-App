@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { setUser } from "../redux/slices/userSlice";
+axios.defaults.withCredentials = true;
 
 const PublicRoutes = () => {
   const dispatch = useDispatch();

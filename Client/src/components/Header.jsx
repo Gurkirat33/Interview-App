@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import { clearUser } from "../redux/slices/userSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const Header = () => {
   const user = useSelector((state) => state.user.user);

@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
