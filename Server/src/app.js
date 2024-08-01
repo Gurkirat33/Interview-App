@@ -10,13 +10,16 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(
-  cors({ origin: "https://interview-app-client.vercel.app", credentials: true })
+  cors({
+    origin: "https://interview-app-frontend-6pl6.onrender.com/",
+    credentials: true,
+  })
 );
 
 // Socket.io and WebRtc
 export const io = new Server(server, {
   cors: {
-    origin: "https://interview-app-client.vercel.app",
+    origin: "https://interview-app-frontend-6pl6.onrender.com/",
     methods: ["GET", "POST"],
     credentials: true,
   },
