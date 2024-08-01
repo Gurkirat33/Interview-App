@@ -11,7 +11,7 @@ const server = http.createServer(app);
 
 app.use(
   cors({
-    origin: "https://interview-app-frontend-6pl6.onrender.com/",
+    origin: "https://interview-app-frontend-6pl6.onrender.com",
     credentials: true,
   })
 );
@@ -19,7 +19,7 @@ app.use(
 // Socket.io and WebRtc
 export const io = new Server(server, {
   cors: {
-    origin: "https://interview-app-frontend-6pl6.onrender.com/",
+    origin: "https://interview-app-frontend-6pl6.onrender.com",
     methods: ["GET", "POST"],
     credentials: true,
   },
