@@ -52,21 +52,21 @@ const SignIn = () => {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    console.log("google sign in clicked");
-    // TODO: handle google sign in
-  };
+  // const handleGoogleSignIn = () => {
+  //   console.log("google sign in clicked");
+  //   // TODO: handle google sign in
+  // };
 
-  const handleGithubSignIn = () => {
-    console.log("github sign in clicked");
-    // TODO: handle github sign in
-  };
+  // const handleGithubSignIn = () => {
+  //   console.log("github sign in clicked");
+  //   // TODO: handle github sign in
+  // };
 
   return (
     <main className="flex">
       <div className="relative hidden min-h-screen flex-1 items-center justify-center bg-primary-800 lg:flex">
         <div className="relative z-10 max-w-md">
-          <img src="" alt="logo" width={150} />
+          <h2 className="mb-4 text-4xl font-bold text-white">Interview IT</h2>
           <div className="space-y-3">
             <h3 className="text-3xl font-bold text-white">
               Enhance Your Interview Experience
@@ -109,7 +109,7 @@ const SignIn = () => {
               </h3>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-3">
+          {/* <div className="grid grid-cols-2 gap-x-3">
             <button
               className="flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-100"
               onClick={handleGoogleSignIn}
@@ -123,13 +123,13 @@ const SignIn = () => {
             >
               <GithubSvg />
             </button>
-          </div>
-          <div className="relative">
+          </div> */}
+          {/* <div className="relative">
             <span className="block h-px w-full bg-gray-300"></span>
             <p className="absolute inset-x-0 -top-2 mx-auto inline-block w-fit bg-white px-2 text-sm">
               Or continue with
             </p>
-          </div>
+          </div> */}
           <form className="space-y-5" onSubmit={handleFormSubmit}>
             <div>
               <label className="font-semibold" htmlFor="name">

@@ -44,19 +44,19 @@ const Login = () => {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    // TODO: handle google sign in
-  };
+  // const handleGoogleSignIn = () => {
+  //   // TODO: handle google sign in
+  // };
 
-  const handleGithubSignIn = () => {
-    // TODO: handle github sign in
-  };
+  // const handleGithubSignIn = () => {
+  //   // TODO: handle github sign in
+  // };
 
   return (
     <main className="flex">
       <div className="relative hidden min-h-screen flex-1 items-center justify-center bg-primary-800 lg:flex">
         <div className="relative z-10 max-w-md">
-          <img src="" alt="logo" width={150} />
+          <h2 className="mb-4 text-4xl font-bold text-white">Interview IT</h2>
           <div className="space-y-3">
             <h3 className="text-3xl font-bold text-white">
               Welcome Back to Enhanced Interview Experience!
@@ -97,27 +97,6 @@ const Login = () => {
                 Sign up
               </h3>
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-x-3">
-            <button
-              className="flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-100"
-              onClick={handleGoogleSignIn}
-            >
-              <GoogleSvg />
-            </button>
-
-            <button
-              className="flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-100"
-              onClick={handleGithubSignIn}
-            >
-              <GithubSvg />
-            </button>
-          </div>
-          <div className="relative">
-            <span className="block h-px w-full bg-gray-300"></span>
-            <p className="absolute inset-x-0 -top-2 mx-auto inline-block w-fit bg-white px-2 text-sm">
-              Or continue with
-            </p>
           </div>
           <form className="space-y-5" onSubmit={handleFormSubmit}>
             <div>
