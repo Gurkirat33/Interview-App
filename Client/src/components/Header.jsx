@@ -17,7 +17,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://interview-app-server.vercel.app/api/v1/users/logoutUser",
+        "https://interview-app-v8ez.onrender.com/api/v1/users/logoutUser",
       );
       toast.success("Logout Successful");
       dispatch(clearUser());

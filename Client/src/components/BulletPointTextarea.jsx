@@ -10,7 +10,7 @@ const BulletPointTextarea = ({ roomId }) => {
   const handleSaveRemarks = async () => {
     try {
       await axios.post(
-        "https://interview-app-server.vercel.app/api/v1/interviews/add-remarks",
+        "https://interview-app-v8ez.onrender.com/api/v1/interviews/add-remarks",
         {
           remarks: value,
           roomId,

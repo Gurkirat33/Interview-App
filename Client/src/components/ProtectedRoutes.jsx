@@ -13,7 +13,7 @@ const ProtectedRoutes = () => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          "https://interview-app-server.vercel.app/api/v1/users/get-user",
+          "https://interview-app-v8ez.onrender.com/api/v1/users/get-user",
         );
         dispatch(setUser(res.data?.data));
       } catch (error) {

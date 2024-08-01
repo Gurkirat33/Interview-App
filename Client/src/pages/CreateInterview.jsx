@@ -23,7 +23,7 @@ const CreateInterview = () => {
     async function createInterview() {
       try {
         const res = await axios.post(
-          "https://interview-app-server.vercel.app/api/v1/interviews/create-interview",
+          "https://interview-app-v8ez.onrender.com/api/v1/interviews/create-interview",
         );
         setInterviewId(res.data.data);
       } catch (error) {

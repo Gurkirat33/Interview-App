@@ -31,7 +31,7 @@ const Login = () => {
     }
     try {
       await axios.post(
-        "https://interview-app-server.vercel.app/api/v1/users/loginUser",
+        "https://interview-app-v8ez.onrender.com/api/v1/users/loginUser",
         {
           email: formData.email.trim(),
           password: formData.password,
