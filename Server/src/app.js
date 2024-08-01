@@ -9,6 +9,10 @@ const app = express();
 
 const server = http.createServer(app);
 
+app.use(
+  cors({ origin: "https://interview-app-client.vercel.app", credentials: true })
+);
+
 // Socket.io and WebRtc
 export const io = new Server(server, {
   cors: {
@@ -100,9 +104,6 @@ io.on("connection", (socket) => {
 });
 
 // middleware
-app.use(
-  cors({ origin: "https://interview-app-client.vercel.app", credentials: true })
-);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
