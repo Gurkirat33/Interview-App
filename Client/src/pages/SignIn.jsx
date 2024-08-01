@@ -33,11 +33,14 @@ const SignIn = () => {
       return;
     }
     try {
-      const res = await axios.post("/api/v1/users/sign-in", {
-        email: formData.email.trim(),
-        password: formData.password,
-        name: formData.name,
-      });
+      const res = await axios.post(
+        "https://interview-app-server.vercel.app/api/v1/users/sign-in",
+        {
+          email: formData.email.trim(),
+          password: formData.password,
+          name: formData.name,
+        },
+      );
       toast.success("Sigin Successful");
       navigate("/dashboard");
     } catch (error) {

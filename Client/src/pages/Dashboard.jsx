@@ -16,7 +16,9 @@ const Dashboard = () => {
     }
     setShowInterviewHistory(true);
     try {
-      const res = await axios.get("/api/v1/interviews/interview-history");
+      const res = await axios.get(
+        "https://interview-app-server.vercel.app/api/v1/interviews/interview-history",
+      );
       setInterviewHistory(res.data.data);
     } catch (error) {
       if (error.response?.data?.statusCode === 403) {

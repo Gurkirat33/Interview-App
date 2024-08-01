@@ -12,7 +12,9 @@ const PublicRoutes = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("/api/v1/users/get-user");
+        const res = await axios.get(
+          "https://interview-app-server.vercel.app/api/v1/users/get-user",
+        );
         dispatch(setUser(res.data?.data));
       } catch (error) {
         dispatch(setUser(null));

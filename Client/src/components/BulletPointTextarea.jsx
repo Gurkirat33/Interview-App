@@ -8,10 +8,13 @@ const BulletPointTextarea = ({ roomId }) => {
 
   const handleSaveRemarks = async () => {
     try {
-      await axios.post("/api/v1/interviews/add-remarks", {
-        remarks: value,
-        roomId,
-      });
+      await axios.post(
+        "https://interview-app-server.vercel.app/api/v1/interviews/add-remarks",
+        {
+          remarks: value,
+          roomId,
+        },
+      );
       toast.success("Remarks added successfully");
     } catch (error) {
       toast.error(error.response?.data?.message);

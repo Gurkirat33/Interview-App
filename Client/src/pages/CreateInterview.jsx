@@ -21,7 +21,9 @@ const CreateInterview = () => {
   useEffect(() => {
     async function createInterview() {
       try {
-        const res = await axios.post("/api/v1/interviews/create-interview");
+        const res = await axios.post(
+          "https://interview-app-server.vercel.app/api/v1/interviews/create-interview",
+        );
         setInterviewId(res.data.data);
       } catch (error) {
         if (error.response?.data?.statusCode === 403) {

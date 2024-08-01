@@ -29,10 +29,13 @@ const Login = () => {
       return;
     }
     try {
-      await axios.post("/api/v1/users/loginUser", {
-        email: formData.email.trim(),
-        password: formData.password,
-      });
+      await axios.post(
+        "https://interview-app-server.vercel.app/api/v1/users/loginUser",
+        {
+          email: formData.email.trim(),
+          password: formData.password,
+        },
+      );
       toast.success("Login Successful");
       navigate("/dashboard");
     } catch (error) {
