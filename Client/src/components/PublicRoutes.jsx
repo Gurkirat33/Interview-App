@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { setUser } from "../redux/slices/userSlice";
+import Loading from "./Loading";
 axios.defaults.withCredentials = true;
 
 const PublicRoutes = () => {
@@ -24,7 +25,7 @@ const PublicRoutes = () => {
     fetchUser();
   }, [dispatch, location.pathname]);
   if (user === undefined) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (user && notAllowedPaths.includes(location.pathname)) {
     return <Navigate to="/dashboard" />;

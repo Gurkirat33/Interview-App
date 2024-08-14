@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import axios from "axios";
 import { setUser } from "../redux/slices/userSlice";
+import Loading from "./Loading";
 axios.defaults.withCredentials = true;
 
 const ProtectedRoutes = () => {
@@ -24,7 +25,7 @@ const ProtectedRoutes = () => {
   }, [dispatch, location.pathname]);
 
   if (user === undefined) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return user ? <Outlet /> : <Navigate to="/sign-in" />;
 };
