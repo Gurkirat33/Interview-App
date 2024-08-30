@@ -111,7 +111,7 @@ const Header = () => {
                     Log in
                   </Link>
                   <Link
-                    to="/signin"
+                    to="/sign-in"
                     className="block rounded-lg bg-primary-600 px-4 py-2 text-center font-semibold text-white shadow duration-300 hover:bg-primary-700 active:shadow-none md:inline md:text-lg"
                   >
                     Sign in

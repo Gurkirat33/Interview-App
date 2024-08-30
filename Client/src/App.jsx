@@ -33,8 +33,8 @@ const AppRouting = () => {
       {!noHeaderFooterRoutes.includes(location.pathname) &&
         !isDynamicRoute(location.pathname) && <Header />}
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route element={<PublicRoutes />}>
-          <Route path="/" element={<Home />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/sign-in" element={<SignIn />} />
